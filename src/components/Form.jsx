@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { FORMATS, TEMPLATES, ACCENT_PRESETS } from '../pdf/constants.js';
+import { FORMATS, TEMPLATES, ACCENT_PRESETS, QR_MODES } from '../pdf/constants.js';
 import { fileToLogo } from '../lib/image.js';
 
 const FIELDS = [
@@ -124,6 +124,40 @@ function AccentPicker({ accent, onAccentChange }) {
   );
 }
 
+function QrPicker({ qrMode, onQrModeChange }) {
+  return (
+    <div>
+      <span className="mb-1 block text-xs font-medium text-slate-600">
+        Code QR{' '}
+        <span className="font-normal text-slate-400">
+          (templates Moderne &amp; Contraste)
+        </span>
+      </span>
+      <div className="grid grid-cols-3 gap-2">
+        {Object.entries(QR_MODES).map(([key, { label, detail }]) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => onQrModeChange(key)}
+            aria-pressed={qrMode === key}
+            title={detail}
+            className={`rounded-lg border px-2 py-2 text-center text-sm font-medium transition ${
+              qrMode === key
+                ? 'border-sky-500 bg-sky-50 text-sky-700 ring-2 ring-sky-200'
+                : 'border-slate-300 bg-white text-slate-600 hover:border-slate-400'
+            }`}
+          >
+            {label}
+            <span className="mt-0.5 block text-[10px] font-normal text-slate-400">
+              {detail}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Form({
   data,
   onFieldChange,
@@ -135,6 +169,8 @@ export default function Form({
   onAccentChange,
   logo,
   onLogoChange,
+  qrMode,
+  onQrModeChange,
 }) {
   return (
     <div className="space-y-6">
@@ -184,6 +220,7 @@ export default function Form({
         <div className="space-y-4">
           <AccentPicker accent={accent} onAccentChange={onAccentChange} />
           <LogoPicker logo={logo} onLogoChange={onLogoChange} />
+          <QrPicker qrMode={qrMode} onQrModeChange={onQrModeChange} />
           <p className="text-xs text-slate-400">
             Le template « Minimaliste » reste volontairement monochrome ; les
             autres utilisent la couleur d'accent. L'image est recadrée

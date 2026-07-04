@@ -33,6 +33,10 @@ aperçu en temps réel, export **PDF vectoriel** prêt pour l'impression.
   (`objectFit: cover`) dans une zone propre à chaque template : pastille ronde
   (Minimaliste, Élégant), pleine colonne (Moderne), vignette sur plaque
   blanche (Contraste)
+- **Code QR** (templates Moderne & Contraste) : au choix _Contact_ (vCard
+  complète), _Site web_ (simple lien — bien moins dense, donc plus facile à
+  scanner) ou _Aucun_. Agrandi et posé sur une plaque blanche (zone de
+  silence) pour rester lisible à l'impression
 
 ## Développement
 
