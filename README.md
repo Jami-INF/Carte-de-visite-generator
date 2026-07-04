@@ -3,6 +3,8 @@
 Générateur de cartes de visite 100 % côté client (zéro backend) : formulaire,
 aperçu en temps réel, export **PDF vectoriel** prêt pour l'impression.
 
+https://jami-inf.github.io/Carte-de-visite-generator/
+
 ## Stack
 
 - **Vite + React** — interface
