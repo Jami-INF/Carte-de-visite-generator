@@ -6,12 +6,20 @@ import TemplateMinimal from './templates/TemplateMinimal.jsx';
 import TemplateModern from './templates/TemplateModern.jsx';
 import TemplateElegant from './templates/TemplateElegant.jsx';
 import TemplateContrast from './templates/TemplateContrast.jsx';
+import TemplateBandeau from './templates/TemplateBandeau.jsx';
+import TemplateBicolore from './templates/TemplateBicolore.jsx';
+import TemplateLigne from './templates/TemplateLigne.jsx';
+import TemplateCadre from './templates/TemplateCadre.jsx';
 
 const TEMPLATE_COMPONENTS = {
   minimal: TemplateMinimal,
   modern: TemplateModern,
   elegant: TemplateElegant,
   contrast: TemplateContrast,
+  bandeau: TemplateBandeau,
+  bicolore: TemplateBicolore,
+  ligne: TemplateLigne,
+  cadre: TemplateCadre,
 };
 
 const GUIDE_COLOR = '#9CA3AF';

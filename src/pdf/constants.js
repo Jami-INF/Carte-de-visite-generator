@@ -38,7 +38,14 @@ export const TEMPLATES = {
   modern: { label: 'Moderne' },
   elegant: { label: 'Élégant' },
   contrast: { label: 'Contraste' },
+  bandeau: { label: 'Bandeau' },
+  bicolore: { label: 'Bicolore' },
+  ligne: { label: 'Ligne' },
+  cadre: { label: 'Cadre' },
 };
+
+// Templates qui affichent un QR code (les autres l'ignorent).
+export const QR_TEMPLATES = ['modern', 'contrast', 'bandeau', 'bicolore'];
 
 // Couleur d'accent par défaut + presets proposés dans l'UI.
 export const DEFAULT_ACCENT = '#0F4C81';

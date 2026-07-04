@@ -24,6 +24,10 @@ aperçu en temps réel, export **PDF vectoriel** prêt pour l'impression.
 - **Moderne** — bloc de couleur latéral (logo ou initiales) + QR code vCard scannable
 - **Élégant** — serif classique (PT Serif), centré, double filet couleur
 - **Contraste** — aplat de couleur pleine page, texte blanc, QR code
+- **Bandeau** — bandeau de couleur en tête (nom + logo), coordonnées + QR sous le blanc
+- **Bicolore** — carte coupée en deux : nom sur l'aplat à gauche, coordonnées + QR à droite
+- **Ligne** — typographique, grand nom + barre de couleur, coordonnées aérées au pied
+- **Cadre** — filet de couleur encadrant toute la carte, contenu centré
 
 ## Personnalisation
 

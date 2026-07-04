@@ -130,7 +130,7 @@ function QrPicker({ qrMode, onQrModeChange }) {
       <span className="mb-1 block text-xs font-medium text-slate-600">
         Code QR{' '}
         <span className="font-normal text-slate-400">
-          (templates Moderne &amp; Contraste)
+          (templates Moderne, Contraste, Bandeau, Bicolore)
         </span>
       </span>
       <div className="grid grid-cols-3 gap-2">
