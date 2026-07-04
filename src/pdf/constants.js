@@ -1,0 +1,27 @@
+// Toutes les dimensions PDF sont en points (1 mm = 2.83465 pt).
+export const MM_TO_PT = 2.83465;
+
+// 3 mm de fond perdu de chaque côté pour l'impression pro.
+export const BLEED_MM = 3;
+export const BLEED_PT = BLEED_MM * MM_TO_PT; // ≈ 8.5 pt
+
+// Formats de page (largeur x hauteur, en points PDF).
+export const PAGE_SIZES = {
+  // 85 x 55 mm net — impression maison.
+  maison: [240.94, 155.9],
+  // 91 x 61 mm — 85x55 + 3 mm de fond perdu sur chaque bord.
+  pro: [257.95, 172.91],
+};
+
+export const FORMATS = {
+  maison: { label: 'Impression Maison', detail: '85 × 55 mm net' },
+  pro: { label: 'Impression Pro', detail: '91 × 61 mm — fond perdu + traits de coupe' },
+};
+
+export const TEMPLATES = {
+  minimal: { label: 'Minimaliste' },
+  modern: { label: 'Moderne' },
+};
+
+// Couleur d'accent du template Moderne.
+export const ACCENT = '#0F4C81';
