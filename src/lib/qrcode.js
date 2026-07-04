@@ -17,14 +17,35 @@ export function buildVCard(data) {
   return lines.join('\n');
 }
 
+// Normalise l'URL du site (ajoute https:// si absent) pour un QR scannable.
+export function normalizeUrl(url) {
+  const trimmed = (url || '').trim();
+  if (!trimmed) return '';
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
+
+// Construit le contenu du QR selon le mode choisi.
+// - vcard : contact complet (dense → beaucoup de modules)
+// - website : simple URL (peu de modules → bien plus facile à scanner)
+// - none / contenu vide : pas de QR
+function qrPayload(data, mode) {
+  if (mode === 'vcard') return buildVCard(data);
+  if (mode === 'website') return normalizeUrl(data.website) || null;
+  return null;
+}
+
 // Génère le QR code en Data URL (PNG) : react-pdf ne supporte pas les
 // SVG complexes, on passe donc une image bitmap haute résolution à <Image>.
-export async function generateQrDataUrl(data) {
-  const vcard = buildVCard(data);
-  return QRCode.toDataURL(vcard, {
+// Renvoie `null` quand il n'y a rien à encoder (mode « aucun » ou site vide).
+export async function generateQrDataUrl(data, mode = 'vcard') {
+  const payload = qrPayload(data, mode);
+  if (!payload) return null;
+  return QRCode.toDataURL(payload, {
     errorCorrectionLevel: 'M',
-    margin: 0,
-    width: 512, // suffisamment dense pour rester net à l'impression
+    // Petite marge intégrée : garantit une zone de silence minimale même
+    // si la plaque blanche du template était retirée un jour.
+    margin: 1,
+    width: 640, // haute résolution → net à l'impression, même agrandi
     color: { dark: '#0B2C49', light: '#FFFFFF' },
   });
 }

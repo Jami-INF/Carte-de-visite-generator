@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
   },
   qrBox: {
     backgroundColor: '#FFFFFF',
-    padding: 3,
+    padding: 4,
     borderRadius: 2,
   },
   qr: {
-    width: 32,
-    height: 32,
+    width: 42,
+    height: 42,
   },
 });
 

@@ -24,6 +24,15 @@ export const FORMATS = {
 export const A4 = [595.28, 841.89];
 export const SHEET_GRID = { cols: 2, rows: 5 };
 
+// Contenu du QR code sur les templates qui en affichent un (Moderne,
+// Contraste). « website » est bien moins dense qu'une vCard → plus lisible.
+export const QR_MODES = {
+  vcard: { label: 'Contact', detail: 'vCard complète' },
+  website: { label: 'Site web', detail: 'lien vers le site' },
+  none: { label: 'Aucun', detail: 'pas de QR code' },
+};
+export const DEFAULT_QR_MODE = 'vcard';
+
 export const TEMPLATES = {
   minimal: { label: 'Minimaliste' },
   modern: { label: 'Moderne' },

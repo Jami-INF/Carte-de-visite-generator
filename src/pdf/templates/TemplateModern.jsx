@@ -37,13 +37,13 @@ const styles = StyleSheet.create({
   },
   qrBox: {
     backgroundColor: '#FFFFFF',
-    padding: 3,
+    padding: 4,
     borderRadius: 2,
     alignSelf: 'flex-start',
   },
   qr: {
-    width: 34,
-    height: 34,
+    width: 44,
+    height: 44,
   },
   main: {
     flex: 1,
