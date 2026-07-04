@@ -1,4 +1,6 @@
-import { FORMATS, TEMPLATES } from '../pdf/constants.js';
+import { useRef, useState } from 'react';
+import { FORMATS, TEMPLATES, ACCENT_PRESETS } from '../pdf/constants.js';
+import { fileToLogo } from '../lib/image.js';
 
 const FIELDS = [
   { key: 'firstName', label: 'Prénom', placeholder: 'Marie', half: true },
@@ -27,6 +29,101 @@ function Field({ field, value, onChange }) {
   );
 }
 
+function LogoPicker({ logo, onLogoChange }) {
+  const inputRef = useRef(null);
+  const [error, setError] = useState(null);
+
+  const handleFile = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setError(null);
+      onLogoChange(await fileToLogo(file));
+    } catch {
+      setError("Impossible de lire cette image — essayez un PNG ou un JPEG.");
+    } finally {
+      e.target.value = ''; // permet de re-sélectionner le même fichier
+    }
+  };
+
+  return (
+    <div>
+      <span className="mb-1 block text-xs font-medium text-slate-600">
+        Logo / image (optionnel)
+      </span>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFile}
+        className="hidden"
+      />
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          className="rounded-lg border border-dashed border-slate-400 bg-white px-4 py-2 text-sm text-slate-600 transition hover:border-sky-500 hover:text-sky-700"
+        >
+          {logo ? 'Changer l’image…' : 'Importer une image…'}
+        </button>
+        {logo ? (
+          <>
+            <img
+              src={logo.url}
+              alt="Aperçu du logo"
+              className="h-10 max-w-24 rounded border border-slate-200 bg-white object-contain p-1"
+            />
+            <button
+              type="button"
+              onClick={() => onLogoChange(null)}
+              className="text-xs text-slate-400 underline transition hover:text-red-600"
+            >
+              Retirer
+            </button>
+          </>
+        ) : null}
+      </div>
+      {error ? <p className="mt-1 text-xs text-red-600">{error}</p> : null}
+    </div>
+  );
+}
+
+function AccentPicker({ accent, onAccentChange }) {
+  return (
+    <div>
+      <span className="mb-1 block text-xs font-medium text-slate-600">
+        Couleur d'accent
+      </span>
+      <div className="flex items-center gap-2">
+        {ACCENT_PRESETS.map((color) => (
+          <button
+            key={color}
+            type="button"
+            onClick={() => onAccentChange(color)}
+            aria-label={`Couleur ${color}`}
+            aria-pressed={accent === color}
+            style={{ backgroundColor: color }}
+            className={`h-8 w-8 rounded-full transition ${
+              accent === color
+                ? 'ring-2 ring-sky-500 ring-offset-2'
+                : 'hover:scale-110'
+            }`}
+          />
+        ))}
+        <label className="ml-1 flex cursor-pointer items-center gap-1.5 text-xs text-slate-500">
+          <input
+            type="color"
+            value={accent}
+            onChange={(e) => onAccentChange(e.target.value)}
+            className="h-8 w-8 cursor-pointer rounded border border-slate-300 bg-white p-0.5"
+          />
+          Autre…
+        </label>
+      </div>
+    </div>
+  );
+}
+
 export default function Form({
   data,
   onFieldChange,
@@ -34,6 +131,10 @@ export default function Form({
   onTemplateChange,
   format,
   onFormatChange,
+  accent,
+  onAccentChange,
+  logo,
+  onLogoChange,
 }) {
   return (
     <div className="space-y-6">
@@ -73,6 +174,23 @@ export default function Form({
               {label}
             </button>
           ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          Personnalisation
+        </h2>
+        <div className="space-y-4">
+          <AccentPicker accent={accent} onAccentChange={onAccentChange} />
+          <LogoPicker logo={logo} onLogoChange={onLogoChange} />
+          <p className="text-xs text-slate-400">
+            Le template « Minimaliste » reste volontairement monochrome ; les
+            autres utilisent la couleur d'accent. L'image est recadrée
+            automatiquement au format de chaque template : pastille ronde
+            (Minimaliste, Élégant), pleine colonne (Moderne), vignette
+            (Contraste).
+          </p>
         </div>
       </section>
 

@@ -1,7 +1,14 @@
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import CardDocument from '../pdf/CardDocument.jsx';
 
-export default function Preview({ data, template, format, qrDataUrl }) {
+export default function Preview({
+  data,
+  template,
+  format,
+  qrDataUrl,
+  accent,
+  logo,
+}) {
   // Le même arbre react-pdf sert à l'aperçu et au téléchargement :
   // ce qu'on voit est exactement ce qu'on exporte.
   const doc = (
@@ -10,6 +17,8 @@ export default function Preview({ data, template, format, qrDataUrl }) {
       template={template}
       format={format}
       qrDataUrl={qrDataUrl}
+      accent={accent}
+      logo={logo}
     />
   );
 
@@ -44,7 +53,9 @@ export default function Preview({ data, template, format, qrDataUrl }) {
       <p className="text-center text-xs text-slate-400">
         PDF vectoriel — {format === 'pro'
           ? '91 × 61 mm avec fond perdu 3 mm et traits de coupe'
-          : '85 × 55 mm net'}
+          : format === 'planche'
+            ? 'planche A4, 10 cartes 85 × 55 mm à découper aux ciseaux'
+            : '85 × 55 mm net'}
       </p>
     </div>
   );

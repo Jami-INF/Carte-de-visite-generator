@@ -3,6 +3,7 @@ import Form from './components/Form.jsx';
 import Preview from './components/Preview.jsx';
 import useDebounce from './hooks/useDebounce.js';
 import { generateQrDataUrl } from './lib/qrcode.js';
+import { DEFAULT_ACCENT } from './pdf/constants.js';
 
 const INITIAL_DATA = {
   firstName: 'Marie',
@@ -19,9 +20,14 @@ export default function App() {
   const [template, setTemplate] = useState('minimal');
   const [format, setFormat] = useState('maison');
   const [qrDataUrl, setQrDataUrl] = useState(null);
+  const [accent, setAccent] = useState(DEFAULT_ACCENT);
+  const [logo, setLogo] = useState(null); // { url, aspect } ou null
 
   // Le PDF n'est re-généré que 400 ms après la dernière frappe.
+  // L'accent est aussi débouncé : le color picker émet en continu
+  // pendant qu'on fait glisser le curseur.
   const debouncedData = useDebounce(data, 400);
+  const debouncedAccent = useDebounce(accent, 400);
 
   // QR code vCard, régénéré quand les données (débouncées) changent.
   useEffect(() => {
@@ -58,6 +64,10 @@ export default function App() {
           onTemplateChange={setTemplate}
           format={format}
           onFormatChange={setFormat}
+          accent={accent}
+          onAccentChange={setAccent}
+          logo={logo}
+          onLogoChange={setLogo}
         />
         <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-6rem)]">
           <Preview
@@ -65,6 +75,8 @@ export default function App() {
             template={template}
             format={format}
             qrDataUrl={qrDataUrl}
+            accent={debouncedAccent}
+            logo={logo}
           />
         </div>
       </main>

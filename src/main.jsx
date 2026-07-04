@@ -1,4 +1,10 @@
+import { Buffer } from 'buffer';
 import { createRoot } from 'react-dom/client';
+
+// Polyfill Node requis par le décodage d'images de @react-pdf/renderer
+// dans le navigateur (sinon : « Buffer is not defined » en boucle).
+globalThis.Buffer = globalThis.Buffer ?? Buffer;
+
 import App from './App.jsx';
 import './index.css';
 

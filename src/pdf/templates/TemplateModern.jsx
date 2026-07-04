@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet } from '@react-pdf/renderer';
-import { ACCENT } from '../constants.js';
+import { DEFAULT_ACCENT } from '../constants.js';
 
 const styles = StyleSheet.create({
   card: {
@@ -10,8 +10,17 @@ const styles = StyleSheet.create({
   // Bloc de couleur : collé au bord gauche, il « déborde » naturellement
   // dans le fond perdu (haut, bas et gauche) en format pro.
   sidebar: {
-    backgroundColor: ACCENT,
     justifyContent: 'space-between',
+  },
+  // L'image remplit toute la colonne : recadrée au centre (cover),
+  // elle déborde dans le fond perdu comme le bloc de couleur.
+  sidebarPhoto: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    objectFit: 'cover',
   },
   initials: {
     fontFamily: 'Roboto',
@@ -52,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 7,
     letterSpacing: 1.8,
     textTransform: 'uppercase',
-    color: ACCENT,
     marginTop: 3,
     marginBottom: 10,
   },
@@ -88,9 +96,15 @@ function ContactRow({ label, value }) {
   );
 }
 
-// Design moderne : bloc de couleur à gauche (initiales + QR code vCard),
-// coordonnées détaillées à droite.
-export default function TemplateModern({ data, bleed = 0, qrDataUrl }) {
+// Design moderne : bloc de couleur à gauche (logo ou initiales + QR code
+// vCard), coordonnées détaillées à droite.
+export default function TemplateModern({
+  data,
+  bleed = 0,
+  qrDataUrl,
+  accent = DEFAULT_ACCENT,
+  logo,
+}) {
   const initials = [data.firstName, data.lastName]
     .filter(Boolean)
     .map((s) => s[0].toUpperCase())
@@ -102,6 +116,7 @@ export default function TemplateModern({ data, bleed = 0, qrDataUrl }) {
         style={[
           styles.sidebar,
           {
+            backgroundColor: accent,
             width: bleed + 86,
             paddingTop: bleed + 12,
             paddingBottom: bleed + 12,
@@ -110,9 +125,14 @@ export default function TemplateModern({ data, bleed = 0, qrDataUrl }) {
           },
         ]}
       >
+        {logo ? <Image src={logo.url} style={styles.sidebarPhoto} /> : null}
         <View>
-          <Text style={styles.initials}>{initials}</Text>
-          <View style={styles.initialsBar} />
+          {!logo ? (
+            <>
+              <Text style={styles.initials}>{initials}</Text>
+              <View style={styles.initialsBar} />
+            </>
+          ) : null}
         </View>
         {qrDataUrl ? (
           <View style={styles.qrBox}>
@@ -135,7 +155,9 @@ export default function TemplateModern({ data, bleed = 0, qrDataUrl }) {
         <Text style={styles.name}>
           {[data.firstName, data.lastName].filter(Boolean).join(' ')}
         </Text>
-        {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
+        {data.role ? (
+          <Text style={[styles.role, { color: accent }]}>{data.role}</Text>
+        ) : null}
         <ContactRow label="TÉL" value={data.phone} />
         <ContactRow label="MAIL" value={data.email} />
         <ContactRow label="WEB" value={data.website} />

@@ -16,11 +16,23 @@ aperçu en temps réel, export **PDF vectoriel** prêt pour l'impression.
 |--------|-----------|-------|
 | Maison | 85 × 55 mm net (240.94 × 155.90 pt) | impression personnelle |
 | Pro | 91 × 61 mm (257.95 × 172.91 pt) | fond perdu 3 mm + traits de coupe, pour imprimeur |
+| Planche A4 | 10 cartes 85 × 55 mm (grille 2 × 5) | impression maison en série — cartes bord à bord, lignes de découpe pleine page à suivre aux ciseaux |
 
 ## Templates
 
-- **Minimaliste** — épuré, centré, texte noir/gris
-- **Moderne** — bloc de couleur latéral + QR code vCard scannable
+- **Minimaliste** — épuré, centré, texte noir/gris (volontairement monochrome)
+- **Moderne** — bloc de couleur latéral (logo ou initiales) + QR code vCard scannable
+- **Élégant** — serif classique (PT Serif), centré, double filet couleur
+- **Contraste** — aplat de couleur pleine page, texte blanc, QR code
+
+## Personnalisation
+
+- **Couleur d'accent** : presets + color picker libre (tous les templates sauf Minimaliste)
+- **Logo / image** : import PNG, JPEG, WebP ou SVG — normalisé en PNG ≤ 600 px
+  via canvas (react-pdf ne supporte que PNG/JPEG), puis recadré au centre
+  (`objectFit: cover`) dans une zone propre à chaque template : pastille ronde
+  (Minimaliste, Élégant), pleine colonne (Moderne), vignette sur plaque
+  blanche (Contraste)
 
 ## Développement
 

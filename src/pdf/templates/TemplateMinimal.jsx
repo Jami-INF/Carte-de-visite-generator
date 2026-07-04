@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { View, Text, Image, StyleSheet } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   card: {
@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
   },
   lastName: {
     fontWeight: 700,
+  },
+  // Pastille ronde : l'image est recadrée au centre (cover), jamais déformée.
+  logo: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    marginBottom: 8,
+    objectFit: 'cover',
   },
   divider: {
     width: 26,
@@ -61,7 +69,8 @@ const styles = StyleSheet.create({
 // Design épuré : tout est centré, texte noir/gris, un seul filet.
 // `bleed` (en pt) est ajouté aux marges pour que le contenu reste dans la
 // zone de coupe en format « pro » (0 en format « maison »).
-export default function TemplateMinimal({ data, bleed = 0 }) {
+// Volontairement monochrome : l'accent n'est pas utilisé ici.
+export default function TemplateMinimal({ data, bleed = 0, logo }) {
   const contact = [data.phone, data.email, data.website]
     .filter(Boolean)
     .join('   ·   ');
@@ -78,6 +87,7 @@ export default function TemplateMinimal({ data, bleed = 0 }) {
       ]}
     >
       <View style={styles.center}>
+        {logo ? <Image src={logo.url} style={styles.logo} /> : null}
         <Text style={styles.name}>
           {data.firstName}{' '}
           <Text style={styles.lastName}>

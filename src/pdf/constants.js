@@ -16,12 +16,28 @@ export const PAGE_SIZES = {
 export const FORMATS = {
   maison: { label: 'Impression Maison', detail: '85 × 55 mm net' },
   pro: { label: 'Impression Pro', detail: '91 × 61 mm — fond perdu + traits de coupe' },
+  planche: { label: 'Planche A4', detail: '10 cartes 85 × 55 mm à découper' },
 };
+
+// Planche : grille de cartes « maison » bord à bord sur une page A4
+// portrait, à découper aux ciseaux en suivant les lignes de guidage.
+export const A4 = [595.28, 841.89];
+export const SHEET_GRID = { cols: 2, rows: 5 };
 
 export const TEMPLATES = {
   minimal: { label: 'Minimaliste' },
   modern: { label: 'Moderne' },
+  elegant: { label: 'Élégant' },
+  contrast: { label: 'Contraste' },
 };
 
-// Couleur d'accent du template Moderne.
-export const ACCENT = '#0F4C81';
+// Couleur d'accent par défaut + presets proposés dans l'UI.
+export const DEFAULT_ACCENT = '#0F4C81';
+export const ACCENT_PRESETS = [
+  '#0F4C81', // bleu
+  '#B91C1C', // rouge
+  '#065F46', // vert
+  '#7C3AED', // violet
+  '#C2410C', // orange
+  '#111827', // noir
+];
