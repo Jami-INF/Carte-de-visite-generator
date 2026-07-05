@@ -17,6 +17,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#FFFFFF',
   },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 8.5,
+    color: '#FFFFFF',
+    marginTop: 2,
+  },
   role: {
     fontFamily: 'Roboto',
     fontWeight: 400,
@@ -35,8 +42,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   logo: {
-    width: 30,
-    height: 30,
+    width: 38,
+    height: 38,
     borderRadius: 3,
     objectFit: 'cover',
   },
@@ -59,8 +66,8 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   qr: {
-    width: 42,
-    height: 42,
+    width: 52,
+    height: 52,
   },
 });
 
@@ -90,6 +97,9 @@ export default function TemplateContrast({
           <Text style={styles.name}>
             {[data.firstName, data.lastName].filter(Boolean).join(' ')}
           </Text>
+          {data.company ? (
+            <Text style={styles.company}>{data.company}</Text>
+          ) : null}
           {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
         </View>
         {logo ? (

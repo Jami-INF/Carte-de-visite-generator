@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  logo: { width: 26, height: 26, borderRadius: 13, objectFit: 'cover' },
+  logo: { width: 34, height: 34, borderRadius: 17, objectFit: 'cover' },
   center: { alignItems: 'center' },
   name: {
     fontFamily: 'Roboto',
@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#6B7280',
     textAlign: 'center',
+  },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 7,
+    color: '#374151',
+    textAlign: 'center',
+    marginTop: 5,
   },
   footer: { alignItems: 'center' },
   contactLine: {
@@ -63,6 +71,9 @@ export default function TemplateCadre({
           </Text>
           <View style={[styles.divider, { backgroundColor: accent }]} />
           {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
+          {data.company ? (
+            <Text style={styles.company}>{data.company}</Text>
+          ) : null}
         </View>
 
         <View style={styles.footer}>

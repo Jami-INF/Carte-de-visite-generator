@@ -5,6 +5,22 @@ aperçu en temps réel, export **PDF vectoriel** prêt pour l'impression.
 
 https://jami-inf.github.io/Carte-de-visite-generator/
 
+## Contexte
+
+Ce projet est né d'un besoin concret : **imprimer mes propres cartes de visite
+chez moi, sur du papier glacé standard**, sans passer par un imprimeur ni un
+service payant. L'objectif était d'obtenir un PDF net, aux bonnes dimensions,
+que je puisse envoyer directement à une imprimante domestique puis découper.
+
+C'est pourquoi l'outil met l'accent sur :
+
+- le **format « Planche A4 »**, qui dispose 10 cartes bord à bord sur une feuille
+  A4 avec des lignes de découpe — idéal pour imprimer une série sur une feuille
+  glacée et couper aux ciseaux ;
+- un **PDF vectoriel** (texte net même après impression, pas de pixellisation) ;
+- des **dimensions strictes** au standard 85 × 55 mm pour que la carte
+  découpée ait la bonne taille.
+
 ## Stack
 
 - **Vite + React** — interface
@@ -30,6 +46,15 @@ https://jami-inf.github.io/Carte-de-visite-generator/
 - **Bicolore** — carte coupée en deux : nom sur l'aplat à gauche, coordonnées + QR à droite
 - **Ligne** — typographique, grand nom + barre de couleur, coordonnées aérées au pied
 - **Cadre** — filet de couleur encadrant toute la carte, contenu centré
+
+## Champs
+
+Prénom, nom, poste, **entreprise**, téléphone, email, site web, adresse.
+L'entreprise s'affiche sous le poste sur tous les templates et alimente la
+vCard du QR (ORG).
+
+Tant que le formulaire est vide, l'aperçu affiche une **carte de démonstration**
+(badge « Exemple ») pour montrer le rendu ; elle disparaît dès la première saisie.
 
 ## Personnalisation
 

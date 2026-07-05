@@ -24,7 +24,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#6B7280',
   },
-  logo: { width: 30, height: 30, borderRadius: 15, objectFit: 'cover' },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 8,
+    color: '#374151',
+    marginTop: 5,
+  },
+  logo: { width: 38, height: 38, borderRadius: 19, objectFit: 'cover' },
   contacts: { flexDirection: 'row', flexWrap: 'wrap' },
   contact: {
     fontFamily: 'Roboto',
@@ -62,6 +69,9 @@ export default function TemplateLigne({
           </Text>
           <View style={[styles.bar, { backgroundColor: accent }]} />
           {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
+          {data.company ? (
+            <Text style={styles.company}>{data.company}</Text>
+          ) : null}
         </View>
         {logo ? <Image src={logo.url} style={styles.logo} /> : null}
       </View>

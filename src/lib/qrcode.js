@@ -8,6 +8,7 @@ export function buildVCard(data) {
     `N:${data.lastName || ''};${data.firstName || ''};;;`,
     `FN:${[data.firstName, data.lastName].filter(Boolean).join(' ')}`,
   ];
+  if (data.company) lines.push(`ORG:${data.company}`);
   if (data.role) lines.push(`TITLE:${data.role}`);
   if (data.phone) lines.push(`TEL;TYPE=CELL:${data.phone}`);
   if (data.email) lines.push(`EMAIL:${data.email}`);

@@ -15,17 +15,17 @@ const styles = StyleSheet.create({
   // Anneau couleur accent autour de la pastille (le cercle de l'image se
   // recadre lui-même, pas besoin de clipping du parent).
   logoRing: {
-    width: 31,
-    height: 31,
-    borderRadius: 15.5,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
   logo: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     objectFit: 'cover',
   },
   name: {
@@ -53,6 +53,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#57534E',
     marginHorizontal: 8,
+  },
+  company: {
+    fontFamily: 'PT Serif',
+    fontWeight: 700,
+    fontSize: 7.5,
+    color: '#292524',
+    textAlign: 'center',
+    marginTop: 6,
   },
   footer: {
     alignItems: 'center',
@@ -112,6 +120,9 @@ export default function TemplateElegant({
             <Text style={styles.role}>{data.role}</Text>
             <View style={[styles.rule, { backgroundColor: accent }]} />
           </View>
+        ) : null}
+        {data.company ? (
+          <Text style={styles.company}>{data.company}</Text>
         ) : null}
       </View>
 

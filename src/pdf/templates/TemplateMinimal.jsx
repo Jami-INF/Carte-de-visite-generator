@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
   },
   // Pastille ronde : l'image est recadrée au centre (cover), jamais déformée.
   logo: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     marginBottom: 8,
     objectFit: 'cover',
   },
@@ -45,6 +45,14 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#6B7280',
     textAlign: 'center',
+  },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 7,
+    color: '#374151',
+    textAlign: 'center',
+    marginTop: 4,
   },
   footer: {
     alignItems: 'center',
@@ -99,6 +107,9 @@ export default function TemplateMinimal({ data, bleed = 0, logo }) {
             <View style={styles.divider} />
             <Text style={styles.role}>{data.role}</Text>
           </>
+        ) : null}
+        {data.company ? (
+          <Text style={styles.company}>{data.company}</Text>
         ) : null}
       </View>
 

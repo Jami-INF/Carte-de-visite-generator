@@ -25,7 +25,14 @@ const styles = StyleSheet.create({
     opacity: 0.85,
     marginTop: 3,
   },
-  logo: { width: 30, height: 30, borderRadius: 15, objectFit: 'cover' },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 8,
+    color: '#FFFFFF',
+    marginTop: 3,
+  },
+  logo: { width: 38, height: 38, borderRadius: 19, objectFit: 'cover' },
   body: { flex: 1, justifyContent: 'flex-end' },
   bottom: {
     flexDirection: 'row',
@@ -40,7 +47,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   qrBox: { backgroundColor: '#FFFFFF', padding: 2, borderRadius: 2 },
-  qr: { width: 42, height: 42 },
+  qr: { width: 52, height: 52 },
 });
 
 // Design bandeau : bloc de couleur horizontal en tête (nom + logo),
@@ -70,6 +77,9 @@ export default function TemplateBandeau({
           <Text style={styles.name}>
             {[data.firstName, data.lastName].filter(Boolean).join(' ')}
           </Text>
+          {data.company ? (
+            <Text style={styles.company}>{data.company}</Text>
+          ) : null}
           {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
         </View>
         {logo ? <Image src={logo.url} style={styles.logo} /> : null}

@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   qr: {
-    width: 44,
-    height: 44,
+    width: 52,
+    height: 52,
   },
   main: {
     flex: 1,
@@ -54,6 +54,13 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     fontSize: 13,
     color: '#111827',
+  },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 8,
+    color: '#374151',
+    marginTop: 2,
   },
   role: {
     fontFamily: 'Roboto',
@@ -155,6 +162,9 @@ export default function TemplateModern({
         <Text style={styles.name}>
           {[data.firstName, data.lastName].filter(Boolean).join(' ')}
         </Text>
+        {data.company ? (
+          <Text style={styles.company}>{data.company}</Text>
+        ) : null}
         {data.role ? (
           <Text style={[styles.role, { color: accent }]}>{data.role}</Text>
         ) : null}

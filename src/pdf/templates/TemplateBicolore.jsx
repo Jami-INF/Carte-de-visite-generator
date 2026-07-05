@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
   // Moitié gauche colorée (déborde à gauche + haut + bas) portant le nom.
   left: { width: '46%', justifyContent: 'center' },
   logo: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     objectFit: 'cover',
     marginBottom: 10,
   },
@@ -27,6 +27,13 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.85,
     marginTop: 4,
+  },
+  company: {
+    fontFamily: 'Roboto',
+    fontWeight: 500,
+    fontSize: 8,
+    color: '#FFFFFF',
+    marginTop: 5,
   },
   right: { flex: 1, justifyContent: 'space-between' },
   row: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     alignSelf: 'flex-end',
   },
-  qr: { width: 40, height: 40 },
+  qr: { width: 50, height: 50 },
 });
 
 function ContactRow({ label, value }) {
@@ -91,6 +98,9 @@ export default function TemplateBicolore({
         <Text style={styles.name}>
           {[data.firstName, data.lastName].filter(Boolean).join(' ')}
         </Text>
+        {data.company ? (
+          <Text style={styles.company}>{data.company}</Text>
+        ) : null}
         {data.role ? <Text style={styles.role}>{data.role}</Text> : null}
       </View>
 
